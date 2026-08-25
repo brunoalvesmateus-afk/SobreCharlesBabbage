@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charles Babbage — O Pai do Computador</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #07111f;
+      color: #e8f0f7;
+      line-height: 1.6;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(7, 17, 31, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #55d6be;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    nav a {
+      color: #dce7ef;
+      text-decoration: none;
+      transition: .3s;
+    }
+
+    nav a:hover {
+      color: #55d6be;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 8% 70px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 80% 30%, rgba(48, 135, 151, .25), transparent 35%),
+        radial-gradient(circle at 20% 80%, rgba(45, 76, 128, .25), transparent 35%),
+        #07111f;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 7px 15px;
+      border: 1px solid #55d6be;
+      color: #55d6be;
+      border-radius: 30px;
+      margin-bottom: 20px;
+      font-size: .9rem;
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      line-height: .95;
+      margin-bottom: 25px;
+      letter-spacing: -5px;
+    }
+
+    h1 span {
+      color: #55d6be;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #aebdca;
+      max-width: 650px;
+      margin-bottom: 35px;
+    }
+
+    .button {
+      display: inline-block;
+      background: #55d6be;
+      color: #07111f;
+      padding: 13px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: .3s;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(85,214,190,.2);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 100px 8%;
+    }
+
+    .section-title {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+    }
+
+    .section-title span {
+      color: #55d6be;
+    }
+
+    .section-intro {
+      color: #9eafbd;
+      max-width: 700px;
+      margin-bottom: 50px;
+    }
+
+    /* BIO */
+    .bio {
+      background: #0b1929;
+    }
+
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .bio-text p {
+      margin-bottom: 18px;
+      color: #b7c4ce;
+    }
+
+    .portrait {
+      min-height: 450px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(145deg, #132c42, #08121f);
+      border: 1px solid rgba(85,214,190,.2);
+      box-shadow: 0 30px 80px rgba(0,0,0,.25);
+    }
+
+    .portrait-inner {
+      text-align: center;
+      padding: 40px;
+    }
+
+    .portrait-icon {
+      font-size: 8rem;
+      margin-bottom: 15px;
+      filter: grayscale(1);
+    }
+
+    .portrait-inner h3 {
+      font-size: 1.7rem;
+    }
+
+    .portrait-inner p {
+      color: #7f929f;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #245264;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 65px;
+      margin-bottom: 45px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 11px;
+      top: 5px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #55d6be;
+      box-shadow: 0 0 20px rgba(85,214,190,.5);
+    }
+
+    .timeline-year {
+      color: #55d6be;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .timeline-item h3 {
+      margin: 5px 0;
+      font-size: 1.4rem;
+    }
+
+    .timeline-item p {
+      color: #9eafbd;
+    }
+
+    /* ENGINES */
+    .engines {
+      background: #0b1929;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    .card {
+      padding: 35px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #102437, #0b1826);
+      border: 1px solid rgba(255,255,255,.07);
+      transition: .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(85,214,190,.4);
+    }
+
+    .card-number {
+      font-size: 3rem;
+      color: #55d6be;
+      font-weight: bold;
+      opacity: .7;
+    }
+
+    .card h3 {
+      font-size: 1.8rem;
+      margin: 10px 0;
+    }
+
+    .card p {
+      color: #9eafbd;
+    }
+
+    /* ANALYTICAL */
+    .analytical {
+      text-align: center;
+      background:
+        radial-gradient(circle at center, rgba(48,135,151,.13), transparent 45%),
+        #07111f;
+    }
+
+    .machine {
+      margin: 50px auto;
+      max-width: 850px;
+      padding: 50px;
+      border: 1px solid #1d4556;
+      border-radius: 25px;
+      background: #091725;
+      overflow: hidden;
+    }
+
+    .gears {
+      font-size: 5rem;
+      letter-spacing: 15px;
+      color: #55d6be;
+      animation: rotate 12s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0); }
+      to { transform: rotate(360deg); }
+    }
+
+    .machine p {
+      color: #aebdca;
+      max-width: 650px;
+      margin: 25px auto 0;
+    }
+
+    /* LEGACY */
+    .legacy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .legacy-card {
+      padding: 30px;
+      background: #0d1c2c;
+      border-radius: 15px;
+      border-top: 3px solid #55d6be;
+    }
+
+    .legacy-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .legacy-card p {
+      color: #9eafbd;
+    }
+
+    /* QUOTE */
+    .quote {
+      padding: 110px 8%;
+      text-align: center;
+      background: #55d6be;
+      color: #07111f;
+    }
+
+    .quote blockquote {
+      max-width: 900px;
+      margin: auto;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: bold;
+      line-height: 1.2;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px;
+      background: #050c15;
+      color: #728391;
+    }
+
+    footer strong {
+      color: #55d6be;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 800px) {
+      nav ul {
+        display: none;
+      }
+
+      .bio-grid,
+      .cards,
+      .legacy-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+      }
+
+      section {
+        padding: 75px 6%;
+      }
+
+      .portrait {
+        min-height: 300px;
+      }
+
+      .gears {
+        font-size: 3rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">BABBAGE<span style="color:#fff">.</span></div>
+
+    <ul>
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#vida">Biografia</a></li>
+      <li><a href="#linha-do-tempo">Linha do tempo</a></li>
+      <li><a href="#maquinas">Máquinas</a></li>
+      <li><a href="#legado">Legado</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="inicio">
+    <div class="hero-content">
+      <span class="tag">1791 — 1871 · PIONEIRO DA COMPUTAÇÃO</span>
+
+      <h1>
+        Charles<br>
+        <span>Babbage</span>
+      </h1>
+
+      <p>
+        O matemático e inventor britânico que imaginou máquinas capazes
+        de realizar cálculos automaticamente — antecipando conceitos
+        fundamentais dos computadores modernos.
+      </p>
+
+      <a href="#vida" class="button">Conheça sua história →</a>
+    </div>
+  </header>
+
+  <!-- BIO -->
+  <section class="bio" id="vida">
+    <div class="bio-grid">
+
+      <div class="bio-text">
+        <h2 class="section-title">Quem foi <span>Babbage?</span></h2>
+
+        <p>
+          Charles Babbage foi um matemático, inventor e engenheiro inglês,
+          nascido em 1791. Desde jovem demonstrou grande interesse por
+          matemática e ciência.
+        </p>
+
+        <p>
+          Durante seus estudos em Cambridge, Babbage ajudou a fundar a
+          Analytical Society. Ele se tornou Fellow da Royal Society em
+          1816 e ocupou posteriormente a prestigiosa cadeira Lucasiana
+          de Matemática em Cambridge.
+        </p>
+
+        <p>
+          Seu grande objetivo era eliminar os erros humanos presentes na
+          produção de tabelas matemáticas. Para isso, imaginou máquinas
+          mecânicas capazes de realizar cálculos de maneira automática.
+        </p>
+
+        <p>
+          Suas ideias foram muito além de uma simples calculadora:
+          a Máquina Analítica possuía conceitos semelhantes aos de um
+          computador programável.
+        </p>
+      </div>
+
+      <div class="portrait">
+        <div class="portrait-inner">
+          <div class="portrait-icon">👤</div>
+          <h3>Charles Babbage</h3>
+          <p>Matemático · Inventor · Pioneiro da computação</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="linha-do-tempo">
+    <h2 class="section-title">Uma vida de <span>inovação</span></h2>
+    <p class="section-intro">
+      Alguns dos principais acontecimentos da trajetória de Babbage.
+    </p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">1791</div>
+        <h3>Nasce Charles Babbage</h3>
+        <p>
+          Babbage nasce na Inglaterra e desde cedo demonstra interesse
+          por matemática e invenções.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">1810</div>
+        <h3>Cambridge</h3>
+        <p>
+          Inicia seus estudos no Trinity College, em Cambridge.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">1816</div>
+        <h3>Royal Society</h3>
+        <p>
+          É eleito Fellow da Royal Society, uma das principais
+          instituições científicas britânicas.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">1822</div>
+        <h3>Máquina Diferencial</h3>
+        <p>
+          Babbage apresenta uma versão experimental de sua
+          Difference Engine.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">1834</div>
+        <h3>Máquina Analítica</h3>
+        <p>
+          Babbage começa a trabalhar em um projeto muito mais
+          ambicioso: uma máquina de propósito geral e programável.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">1871</div>
+        <h3>Fim de uma era</h3>
+        <p>
+          Babbage morre em Londres, deixando projetos que
+          continuariam influenciando a história da computação.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MÁQUINAS -->
+  <section class="engines" id="maquinas">
+    <h2 class="section-title">As máquinas de <span>Babbage</span></h2>
+
+    <p class="section-intro">
+      Seus dois principais projetos mecânicos representaram passos
+      extraordinários para a tecnologia do século XIX.
+    </p>
+
+    <div class="cards">
+
+      <article class="card">
+        <div class="card-number">01</div>
+        <h3>Máquina Diferencial</h3>
+
+        <p>
+          A Difference Engine foi projetada para calcular automaticamente
+          séries numéricas e produzir tabelas matemáticas com maior
+          precisão, utilizando o método das diferenças finitas.
+        </p>
+
+        <br>
+
+        <p>
+          Uma parte da Difference Engine No. 1 foi construída em 1832
+          pelo engenheiro Joseph Clement.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-number">02</div>
+        <h3>Máquina Analítica</h3>
+
+        <p>
+          A Analytical Engine era muito mais ambiciosa. Babbage imaginou
+          uma máquina que poderia armazenar números, realizar operações
+          e seguir instruções através de cartões perfurados.
+        </p>
+
+        <br>
+
+        <p>
+          Sua arquitetura apresenta conceitos que lembram elementos
+          fundamentais dos computadores modernos.
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ANALYTICAL ENGINE -->
+  <section class="analytical">
+    <h2 class="section-title">A ideia que estava <span>à frente do seu tempo</span></h2>
+
+    <div class="machine">
+
+      <div class="gears">⚙ ⚙ ⚙</div>
+
+      <p>
+        A Máquina Analítica foi concebida como uma máquina de computação
+        de propósito geral. Seu projeto incluía uma unidade para
+        processamento, armazenamento de números e um sistema de
+        programação baseado em cartões perfurados.
+      </p>
+
+    </div>
+
+    <p class="section-intro" style="margin: auto;">
+      A Universidade de Cambridge descreve a Máquina Analítica como
+      uma das primeiras concepções de um computador de propósito geral.
+    </p>
+  </section>
+
+  <!-- LEGACY -->
+  <section id="legado">
+    <h2 class="section-title">O <span>legado</span> de Babbage</h2>
+
+    <p class="section-intro">
+      Embora suas máquinas não tenham sido concluídas durante sua vida,
+      suas ideias sobreviveram e ganharam importância décadas depois.
+    </p>
+
+    <div class="legacy-grid">
+
+      <div class="legacy-card">
+        <h3>💻 Computação</h3>
+        <p>
+          A Máquina Analítica antecipou conceitos de armazenamento,
+          processamento e programação.
+        </p>
+      </div>
+
+      <div class="legacy-card">
+        <h3>🧮 Automação</h3>
+        <p>
+          Babbage buscava automatizar cálculos que anteriormente
+          dependiam do trabalho humano.
+        </p>
+      </div>
+
+      <div class="legacy-card">
+        <h3>⚙️ Engenharia</h3>
+        <p>
+          Seus projetos exigiam milhares de componentes e uma precisão
+          mecânica extraordinária para a época.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="quote">
+    <blockquote>
+      “Babbage imaginou máquinas que pertencem ao futuro,
+      usando a tecnologia do seu próprio tempo.”
+    </blockquote>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      Site educativo sobre <strong>Charles Babbage</strong>
+    </p>
+
+    <p style="margin-top:10px;">
+      Conteúdo histórico baseado em registros do Science Museum
+      e da Universidade de Cambridge.
+    </p>
+  </footer>
+
+</body>
+</html>
+
