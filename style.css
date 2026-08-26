@@ -173,6 +173,8 @@
       font-size: 8rem;
       margin-bottom: 15px;
       filter: grayscale(1);
+      width: 100px;
+      height: 100px;
     }
 
     .portrait-inner h3 {
